@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>瀑布流</title>
+  <style>
+    .wrap {
+      position: relative;
+    }
+    img {
+      display: inline-block;
+      position: absolute;
+      margin: 10px;
+      transition: all 1s;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <img src="img/pbl1.jpg" alt="">
+  <img src="img/pbl2.jpg" alt="">
+  <img src="img/pbl3.jpg" alt="">
+  <img src="img/pbl4.jpg" alt="">
+  <img src="img/pbl5.jpg" alt="">
+  <img src="img/pbl6.jpg" alt="">
+  <img src="img/pbl7.jpg" alt="">
+  <img src="img/pbl8.jpg" alt="">
+  <img src="img/pbl9.jpg" alt="">
+  <img src="img/pbl10.jpg" alt="">
+  <img src="img/pbl11.jpg" alt="">
+  <img src="img/pbl12.jpg" alt="">
+  <img src="img/pbl13.jpg" alt="">
+  <img src="img/pbl14.jpg" alt="">
+  <img src="img/pbl15.jpg" alt="">
+  <img src="img/pbl16.jpg" alt="">
+  <img src="img/pbl17.jpg" alt="">
+  <img src="img/pbl18.jpg" alt="">
+  <img src="img/pbl19.jpg" alt="">
+  <img src="img/pbl20.jpg" alt="">
+  <img src="img/pbl21.jpg" alt="">
+  <img src="img/pbl22.jpg" alt="">
+  <img src="img/pbl23.jpg" alt="">
+  <img src="img/pbl24.jpg" alt="">
+  <img src="img/pbl25.jpg" alt="">
+  <img src="img/pbl26.jpg" alt="">
+  <img src="img/pbl27.jpg" alt="">
+  <img src="img/pbl28.jpg" alt="">
+  <img src="img/pbl29.jpg" alt="">
+  <img src="img/pbl30.jpg" alt="">
+</div>
+
+
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+  $(function(){
+
+    waterfull()
+    $(window).resize(function () {
+      waterfull()
+    })
+
+    function waterfull() {
+      var wWidth = $('.wrap').width()
+      var imgWidth = $('img').width()
+      var length = parseInt(wWidth / imgWidth)
+      var itemArr = []
+
+      for(var i = 0; i < length; i++) {
+        itemArr[i] = 0
+      }
+      $('img').each(function () {
+        var minValue = Math.min.apply(null,itemArr)
+        var minIndex = itemArr.indexOf(minValue)
+        $(this).css({
+          top: itemArr[minIndex],
+          left: $(this).outerWidth(true) * minIndex
+        })
+        itemArr[minIndex] += $(this).outerHeight(true)
+      })
+    }
+  });
+</script>
+</body>
+</html>
